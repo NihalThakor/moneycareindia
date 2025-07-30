@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react';
+import { Menu, X, ChevronDown, Phone, Mail, ExternalLink } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 interface SubItem {
@@ -33,6 +33,26 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    // Prevent body scrolling when mobile menu is open
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+
+    // Cleanup function to restore scrolling when component unmounts
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [isMenuOpen]);
 
   const toggleDropdown = (dropdown: string) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
@@ -212,32 +232,52 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
             </button>
           </div>
 
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="lg:hidden mt-4 pb-4 border-t max-h-96 overflow-y-auto">
-              <div className="flex flex-col space-y-1 pt-4">
+          {/* Mobile Navigation Overlay */}
+          <div className={`lg:hidden fixed inset-0 z-50 transition-all duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-md" onClick={() => setIsMenuOpen(false)}></div>
+            <div className={`absolute right-0 top-0 h-screen w-80 bg-blue-900 shadow-2xl transform transition-transform duration-300 ease-in-out z-10 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`} onClick={(e) => e.stopPropagation()}>
+                <div className="flex justify-between items-center p-6 border-b border-white/20 bg-blue-900">
+                  <h3 className="text-white font-bold text-lg">Menu</h3>
+                  <button
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-white hover:text-orange-400 transition-colors p-2 rounded-full hover:bg-white/10"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+                <div className="flex flex-col space-y-2 p-6 h-[calc(100vh-120px)] overflow-y-auto bg-blue-900">
                 {navItems.map((item) => (
                   <div key={item.name}>
                     {item.dropdown ? (
                       <div>
                         <button
                           onClick={() => toggleDropdown(item.name)}
-                          className="flex items-center justify-between w-full text-left px-3 sm:px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors rounded text-sm sm:text-base"
+                          className="flex items-center justify-between w-full text-left px-4 py-3 text-white hover:bg-blue-800 hover:text-orange-400 transition-all duration-200 rounded-lg text-base font-medium bg-blue-900"
                         >
                           <span className="truncate">{item.name}</span>
                           <ChevronDown className={`w-4 h-4 transition-transform flex-shrink-0 ${openDropdown === item.name ? 'rotate-180' : ''}`} />
                         </button>
                         {openDropdown === item.name && (
-                          <div className="ml-3 sm:ml-4 mt-1 space-y-1">
+                          <div className="ml-4 mt-2 space-y-1 bg-blue-800 rounded-lg p-2">
                             {item.dropdown.map((subItem) => (
-                              <a
-                                key={subItem.name}
-                                href={subItem.href}
-                                download={subItem.download}
-                                className="block px-3 sm:px-4 py-2 text-xs sm:text-sm text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-colors rounded"
-                              >
-                                <span className="truncate">{subItem.name}</span>
-                              </a>
+                              <React.Fragment key={subItem.name}>
+                                {subItem.download ? (
+                                  <a
+                                    href={subItem.href}
+                                    download={subItem.download}
+                                    className="block px-4 py-2 text-sm text-blue-100 hover:bg-blue-700 hover:text-orange-400 transition-all duration-200 rounded-md"
+                                  >
+                                    <span className="truncate">{subItem.name}</span>
+                                  </a>
+                                ) : (
+                                  <Link
+                                    to={subItem.href}
+                                    className="block px-4 py-2 text-sm text-blue-100 hover:bg-blue-700 hover:text-orange-400 transition-all duration-200 rounded-md"
+                                  >
+                                    <span className="truncate">{subItem.name}</span>
+                                  </Link>
+                                )}
+                              </React.Fragment>
                             ))}
                           </div>
                         )}
@@ -247,20 +287,21 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
                         to={item.href}
                         target={item.external ? '_blank' : undefined}
                         rel={item.external ? 'noopener noreferrer' : undefined}
-                        className={`block px-3 sm:px-4 py-2 transition-colors rounded text-sm sm:text-base ${
+                        className={`block px-4 py-3 transition-all duration-200 rounded-lg text-base font-medium ${
                           item.cta
-                            ? 'bg-orange-500 text-white hover:bg-orange-600 text-center mx-2 sm:mx-4'
-                            : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600'
+                            ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 text-center mx-2 shadow-lg'
+                            : 'text-white hover:bg-blue-800 hover:text-orange-400 bg-blue-900'
                         }`}
-                      >
-                        <span className="truncate">{item.name}</span>
+                                              >
+                          <span className="truncate">{item.name}</span>
+                          {item.external && <ExternalLink className="w-4 h-4 ml-2 inline" />}
                       </Link>
                     )}
                   </div>
                 ))}
+                </div>
               </div>
             </div>
-          )}
         </div>
       </nav>
     </header>

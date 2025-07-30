@@ -8,17 +8,28 @@ const InvestorCharter: React.FC = () => {
     <div className="min-h-screen bg-white">
       <Header currentPage="investor-charter" />
       
-      <div className="pt-40 pb-20">
+      {/* Hero Section */}
+      <div className="pt-40 pb-16 bg-gradient-to-r from-blue-900 via-blue-800 to-orange-600 text-white">
         <div className="container mx-auto px-4">
-          {/* Hero Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Investor Charter - <span className="text-blue-600">Depository</span>
+          <div className="text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-4">
+              Investor Charter - <span className="text-orange-400">Depository</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
               Comprehensive information about depository services and investor rights
             </p>
+            {/* Breadcrumbs */}
+            <div className="flex justify-center items-center space-x-2 text-sm">
+              <span className="text-blue-200">Home</span>
+              <span className="text-blue-300">/</span>
+              <span className="text-orange-400 font-semibold">Investor Charter</span>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div className="py-20">
+        <div className="container mx-auto px-4">
 
           {/* Main Content */}
           <div className="max-w-5xl mx-auto">

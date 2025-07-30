@@ -9,16 +9,32 @@ const SEBIRiskDisclosure: React.FC = () => {
       
       
       
-      <main className="flex-grow container mx-auto px-4 pt-40 pb-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h1 className="text-3xl font-bold text-center mb-8">
-              Annexure - I: Risk disclosures
+      {/* Hero Section */}
+      <div className="pt-40 pb-16 bg-gradient-to-r from-blue-900 via-blue-800 to-orange-600 text-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-4">
+              Annexure - I: <span className="text-orange-400">Risk Disclosures</span>
             </h1>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+              Important risk disclosures for derivatives trading and investor protection
+            </p>
+            {/* Breadcrumbs */}
+            <div className="flex justify-center items-center space-x-2 text-sm">
+              <span className="text-blue-200">Home</span>
+              <span className="text-blue-300">/</span>
+              <span className="text-orange-400 font-semibold">SEBI Risk Disclosure</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-center">
-                Risk disclosures on Derivatives
+      <main className="flex-grow py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
+                Risk Disclosures on Derivatives
               </h2>
 
               <div className="space-y-4">
