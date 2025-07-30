@@ -10,7 +10,7 @@ const ContactUs: React.FC = () => {
       <Header currentPage="contact" />
       
       {/* Hero Section */}
-      <div className="pt-40 pb-16 bg-gradient-to-r from-blue-900 to-blue-800 text-white">
+              <div className="pt-40 pb-16 bg-gradient-to-r from-blue-900 via-blue-800 to-orange-600 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">

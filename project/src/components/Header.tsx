@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface SubItem {
   name: string;
@@ -24,6 +24,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +36,10 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
 
   const toggleDropdown = (dropdown: string) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
+  };
+
+  const handleLogoClick = () => {
+    navigate('/');
   };
 
   const navItems = [
@@ -77,9 +82,9 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
   ];
 
   return (
-    <header className="fixed w-full z-50 bg-white shadow-lg transition-all duration-300">
+    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
       {/* Top Contact Bar */}
-      <div className="bg-blue-900 text-white py-2 px-4">
+      <div className="bg-blue-900/95 backdrop-blur-sm text-white py-2 px-4">
         <div className="container mx-auto flex justify-between items-center text-xs sm:text-sm">
           {/* Contact Info - Left Side (Desktop) */}
           <div className="hidden sm:flex items-center space-x-6">
@@ -115,11 +120,14 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
       </div>
 
       {/* Main Navigation */}
-      <nav className={`bg-white transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
+      <nav className={`transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md py-2' : 'bg-transparent py-4'}`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center space-x-2 sm:space-x-3">
+            <div 
+              className="flex items-center space-x-2 sm:space-x-3 cursor-pointer hover:opacity-80 transition-opacity duration-200"
+              onClick={handleLogoClick}
+            >
               <div className="relative w-10 h-10 sm:w-16 sm:h-16">
                 <img 
                   src="/Logo.png" 
@@ -129,13 +137,13 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
               </div>
               <div>
                 <h1 className="text-lg sm:text-xl font-bold">
-                  <span className="text-blue-900">Money</span>
+                  <span className={`${isScrolled ? 'text-blue-900' : 'text-white'}`}>Money</span>
                   <span className="text-orange-500 relative">
                     care
                     <div className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-500"></div>
                   </span>
                 </h1>
-                <p className="text-xs sm:text-sm text-gray-600">Caring for better tomorrow</p>
+                <p className={`text-xs sm:text-sm ${isScrolled ? 'text-gray-600' : 'text-blue-100'}`}>Caring for better tomorrow</p>
               </div>
             </div>
 
@@ -147,7 +155,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
                     <div className="relative">
                       <button
                         onClick={() => toggleDropdown(item.name)}
-                        className="flex items-center space-x-1 text-gray-700 hover:text-blue-600 transition-colors py-2"
+                        className={`flex items-center space-x-1 transition-colors py-2 ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-orange-400'}`}
                       >
                         <span>{item.name}</span>
                         <ChevronDown className="w-4 h-4" />
@@ -185,7 +193,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
                       className={`${
                         item.cta
                           ? 'bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors'
-                          : 'text-gray-700 hover:text-blue-600 transition-colors'
+                          : `${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-orange-400'} transition-colors`
                       }`}
                     >
                       {item.name}
@@ -198,7 +206,7 @@ const Header: React.FC<HeaderProps> = ({ currentPage = 'home' }) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden text-gray-700 hover:text-blue-600 transition-colors p-2"
+              className={`lg:hidden transition-colors p-2 ${isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-orange-400'}`}
             >
               {isMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>

@@ -43,35 +43,40 @@ function AppContent() {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
+  useEffect(() => {
+    // Scroll to top when route changes
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const handleCloseModal = () => {
     setShowRiskModal(false);
   };
 
   return (
-    <div className="App">
+      <div className="App">
       {/* Page Loader */}
       <PageLoader isLoading={isLoading || isNavigating} />
       
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/investor-charter" element={<InvestorCharter />} />
-        <Route path="/mitc" element={<MITC />} />
-        <Route path="/downloads" element={<Downloads />} />
-        <Route path="/sebi-risk-disclosure" element={<SEBIRiskDisclosure />} />
-        <Route path="/freezing-blocking" element={<FreezingBlocking />} />
-        <Route path="/important-circular" element={<ImportantCircular />} />
-        <Route path="/bank-details" element={<BankDetails />} />
-        <Route path="/contact" element={<ContactUs />} />
-      </Routes>
-      
-      {/* Risk Disclosure Modal */}
-      <RiskDisclosureModal 
-        isOpen={showRiskModal} 
-        onClose={handleCloseModal} 
-      />
-    </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/investor-charter" element={<InvestorCharter />} />
+          <Route path="/mitc" element={<MITC />} />
+          <Route path="/downloads" element={<Downloads />} />
+          <Route path="/sebi-risk-disclosure" element={<SEBIRiskDisclosure />} />
+          <Route path="/freezing-blocking" element={<FreezingBlocking />} />
+          <Route path="/important-circular" element={<ImportantCircular />} />
+          <Route path="/bank-details" element={<BankDetails />} />
+          <Route path="/contact" element={<ContactUs />} />
+        </Routes>
+        
+        {/* Risk Disclosure Modal */}
+        <RiskDisclosureModal 
+          isOpen={showRiskModal} 
+          onClose={handleCloseModal} 
+        />
+      </div>
   );
 }
 

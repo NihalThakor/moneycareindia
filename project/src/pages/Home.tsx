@@ -43,7 +43,7 @@ const Home: React.FC = () => {
       <Header currentPage="home" />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-blue-900 via-blue-800 to-orange-600 text-white overflow-hidden">
+      <section className="relative pt-36 pb-20 bg-gradient-to-r from-blue-900 via-blue-800 to-orange-600 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center">
@@ -203,89 +203,89 @@ const Home: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-gray-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-900 via-blue-800 to-orange-600 text-white">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-4xl font-bold">Get in <span className="text-orange-400">Touch</span></h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Ready to start your financial journey? Contact our expert team for personalized guidance.
+            <h2 className="text-4xl font-bold">Contact <span className="text-orange-400">Us</span></h2>
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+              Ready to start your financial journey? Contact our expert team for personalized guidance and support.
             </p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="space-y-8">
               <div className="flex items-center space-x-4">
-                <div className="bg-blue-600 p-3 rounded-full">
-                  <Phone className="w-6 h-6" />
+                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full border border-white/30">
+                  <Phone className="w-6 h-6 text-orange-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">Phone</h3>
-                  <p className="text-gray-300">+91-22-6234-5678</p>
+                  <h3 className="text-xl font-semibold text-white">Phone</h3>
+                  <p className="text-blue-100">+91-22-6234-5678</p>
                 </div>
               </div>
               
               <div className="flex items-center space-x-4">
-                <div className="bg-blue-600 p-3 rounded-full">
-                  <Mail className="w-6 h-6" />
+                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full border border-white/30">
+                  <Mail className="w-6 h-6 text-orange-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">Email</h3>
-                  <p className="text-gray-300">info@moneycareindia.co.in</p>
+                  <h3 className="text-xl font-semibold text-white">Email</h3>
+                  <p className="text-blue-100">info@moneycareindia.co.in</p>
                 </div>
               </div>
               
               <div className="flex items-center space-x-4">
-                <div className="bg-blue-600 p-3 rounded-full">
-                  <MapPin className="w-6 h-6" />
+                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full border border-white/30">
+                  <MapPin className="w-6 h-6 text-orange-400" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">Address</h3>
-                  <p className="text-gray-300">50-A, 3rd Floor, 308 Hanuman building<br />Perin Nariman Street, Fort Market, Mumbai</p>
+                  <h3 className="text-xl font-semibold text-white">Address</h3>
+                  <p className="text-blue-100">50-A, 3rd Floor, 308 Hanuman building<br />Perin Nariman Street, Fort Market, Mumbai</p>
                 </div>
               </div>
             </div>
             
-            <div className="bg-gray-800 p-8 rounded-lg">
+            <div className="bg-white/10 backdrop-blur-md p-8 rounded-lg border border-white/20">
               <form className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">Name</label>
                   <input 
                     type="text" 
                     id="name" 
-                    className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent text-white placeholder-white/70"
                     placeholder="Your Name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">Email</label>
                   <input 
                     type="email" 
                     id="email" 
-                    className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent text-white placeholder-white/70"
                     placeholder="your@email.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
+                  <label htmlFor="subject" className="block text-sm font-medium mb-2 text-white">Subject</label>
                   <input 
                     type="text" 
                     id="subject" 
-                    className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent text-white placeholder-white/70"
                     placeholder="Subject"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">Message</label>
                   <textarea 
                     id="message" 
                     rows={4}
-                    className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                    className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg focus:ring-2 focus:ring-orange-400 focus:border-transparent text-white placeholder-white/70"
                     placeholder="Your message..."
                   ></textarea>
                 </div>
                 <button 
                   type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 px-6 rounded-lg font-semibold transition-colors duration-300"
+                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   Send Message
                 </button>
